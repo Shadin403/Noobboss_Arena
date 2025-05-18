@@ -10,7 +10,7 @@
                 class="block py-2 px-4 text-white nav-link {{ request()->routeIs('main') ? 'bg-gray-700' : '' }}">Dashboard</a>
             <a class="block py-2 px-4 text-white hover:bg-gray-700 nav-link">Users</a>
             <a class="block py-2 px-4 text-white hover:bg-gray-700 nav-link ">Transactions</a>
-            <a href="{{ route('tournaments') }}"
+            <a href="{{ route('tournaments') }}" wire:navigate
                 class="block py-2 px-4 text-white hover:bg-gray-700 nav-link {{ request()->routeIs('tournaments') ? 'bg-gray-700' : '' }}">Tournaments</a>
             <a href="/" class="block py-2 px-4 text-white hover:bg-gray-700 nav-link">Back to Site</a>
         </nav>

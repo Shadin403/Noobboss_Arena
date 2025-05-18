@@ -17,8 +17,7 @@
     {{ $slot }}
 
     <script src="{{ asset('admin_statics/js/script.js') }}"></script>
-
-    @livewireScriptConfig
+    @livewireScripts
 </body>
 
 </html>

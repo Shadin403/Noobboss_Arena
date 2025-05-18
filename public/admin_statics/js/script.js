@@ -1,4 +1,3 @@
-// Toggle Mobile Menu (for main site)
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById("mobile-menu");
     if (mobileMenu) {
@@ -6,19 +5,16 @@ function toggleMobileMenu() {
     }
 }
 
-// Toggle Sidebar (for admin panel)
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("translate-x-[-100%]");
     sidebar.classList.toggle("translate-x-0");
 }
 
-// User Actions
 function showEditUserForm(userId) {
     const form = document.getElementById("edit-user-form");
     if (form) {
         form.classList.remove("hidden");
-        // Placeholder: Populate form with user data
         alert(`Editing user ID: ${userId}`);
     }
 }
@@ -36,7 +32,6 @@ function deleteUser(userId) {
     }
 }
 
-// Transaction Actions
 function approveTransaction(transactionId) {
     alert(`Transaction ID ${transactionId} approved`);
 }
@@ -45,7 +40,6 @@ function rejectTransaction(transactionId) {
     alert(`Transaction ID ${transactionId} rejected`);
 }
 
-// Tournament Actions
 function showAddTournamentForm() {
     const form = document.getElementById("add-tournament-form");
     if (form) {
@@ -64,7 +58,6 @@ function showEditTournamentForm(tournamentId) {
     const form = document.getElementById("edit-tournament-form");
     if (form) {
         form.classList.remove("hidden");
-        // Placeholder: Populate form with tournament data
         alert(`Editing tournament ID: ${tournamentId}`);
     }
 }
@@ -86,8 +79,12 @@ function deleteTournament(tournamentId) {
     }
 }
 
-// Form Submissions and Event Listeners
-document.addEventListener("DOMContentLoaded", () => {
+function joinTournament(type) {
+    alert(`Joined ${type} Tournament!`);
+    window.location.href = "live.html";
+}
+
+function initAppScripts() {
     // Main site menu
     const hamburger = document.getElementById("hamburger");
     if (hamburger) {
@@ -179,12 +176,15 @@ document.addEventListener("DOMContentLoaded", () => {
             hideEditTournamentForm();
         });
     }
-});
-
-document.addEventListener("live");
-
-// Join Tournament (main site)
-function joinTournament(type) {
-    alert(`Joined ${type} Tournament!`);
-    window.location.href = "live.html";
 }
+
+// Run once on page load
+document.addEventListener("DOMContentLoaded", initAppScripts);
+
+// document.addEventListener("livewire:navigated", initAppScripts);
+// Livewire রেডি হলে হুক অ্যাড করো
+document.addEventListener("livewire:initialized", () => {
+    Livewire.hook("element.init", ({ el, component }) => {
+        initAppScripts();
+    });
+});
