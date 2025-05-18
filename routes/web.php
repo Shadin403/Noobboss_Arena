@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Livewire\Admin\Main;
+use App\Livewire\Admin\Tournaments;
+use App\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,10 +11,13 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'dashboard'], function () {
-    Route::controller(DashboardController::class)->group(function () {
-        Route::get('/','main')->name('main');
-        Route::get('/tournaments','tournaments')->name('tournaments');
-        Route::get('/transactions','transactions')->name('transactions');
-        Route::get('/users','users')->name('users');
-    });
+    Route::get('/', Main::class)->name('main');
+    Route::get('/tournaments', Tournaments::class)->name('tournaments');
 });
+
+
+// Route::get('/tournaments', 'tournaments')->name('tournaments');
+// Route::get('/transactions', 'transactions')->name('transactions');
+// Route::get('/users', 'users')->name('users');
+
+Route::get('/couter', Counter::class)->name('counter');
